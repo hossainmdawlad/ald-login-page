@@ -1,9 +1,9 @@
 === ALD Login Page ===
-Contributors: (hossainawlad)
+Contributors: hossainawlad
 Plugin URI: https://www.technoviable.com/
 Tags: login, form, login form
 Requires at least: 4.4.2
-Tested up to: 5.6
+Tested up to: 6.5
 Stable tag: 1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
