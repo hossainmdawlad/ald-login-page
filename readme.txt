@@ -46,6 +46,9 @@ Do you have questions or issues with ALD Login Page? Use these support channels 
 
 For more information
 
+= 1.1 =
+* Dynamically define plugin version.
+* Security improvements
+
 = 1.0 =
 * Initial Release.
-
