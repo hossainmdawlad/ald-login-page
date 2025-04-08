@@ -4,7 +4,7 @@ defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
  * Plugin Name: ALD Login Page
  * Plugin URI: https://github.com/hossainmdawlad/ald-login-page
  * Description: ALD Login Page can manage login page flexibly with simple markup with the help of wordpress.
- * Version: 1.0
+ * Version: 1.1
  * Author: Hossain Md. Awlad
  * Author URI: https://www.technoviable.com/
  *
@@ -27,8 +27,13 @@ You should have received a copy of the GNU General Public License
 along with ALD Login Page. If not, see https://www.gnu.org/licenses/gpl-2.0.html.
  */
 
-// Version declar
-define( 'ald_login_page_db_version', '1.0' );
+// Version declaration
+if ( ! function_exists( 'get_plugin_data' ) ) {
+	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+}
+$plugin_data = get_plugin_data( __FILE__ );
+$plugin_version = $plugin_data['Version'];
+define( 'ald_login_page_db_version', $plugin_version );
 
 // Backwards compatibility for older than PHP 5.3.0
 if ( !defined( '__DIR__' ) ) {
@@ -36,7 +41,6 @@ if ( !defined( '__DIR__' ) ) {
 }
 
 $ald_login_page_path = esc_url(admin_url('admin.php?page=ald-login-page', 'http' ));
-$ald_login_page_db_version = '1.0';
 
 // initialize plugin
 function install_ald_login_page(){
