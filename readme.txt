@@ -5,7 +5,7 @@ Author URI: https://www.technoviable.com
 Tags: change login page, login, form, login form
 Requires at least: 4.4.2
 Tested up to: 6.7
-Stable tag: 1.1
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,14 @@ Do you have questions or issues with ALD Login Page? Use these support channels 
 == Changelog ==
 
 For more information
+
+= 1.3 =
+* Refactored admin page to use WordPress Settings API for standard styling.
+* Added options for Logo Width, Height, and Padding.
+* Fixed color picker script dependency issue.
+
+= 1.2 =
+* Improved admin page UI with sections, descriptions, and better media uploader integration.
 
 = 1.1 =
 * Dynamically define plugin version.
