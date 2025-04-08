@@ -2,6 +2,7 @@
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 /**
  * Plugin Name: ALD Login Page
+ * Plugin URI: https://github.com/hossainmdawlad/ald-login-page
  * Description: ALD Login Page can manage login page flexibly with simple markup with the help of wordpress.
  * Version: 1.0
  * Author: Hossain Md. Awlad
@@ -34,7 +35,7 @@ if ( !defined( '__DIR__' ) ) {
     define( '__DIR__', dirname( __FILE__ ) );
 }
 
-$ald_login_page_path = admin_url('admin.php?page=ald-login-page', 'http' );
+$ald_login_page_path = esc_url(admin_url('admin.php?page=ald-login-page', 'http' ));
 $ald_login_page_db_version = '1.0';
 
 // initialize plugin
@@ -75,12 +76,12 @@ function ald_login_page_options() {
 	<span class="alignleft"><h1>ALD Login Page Options</h1></span>
 	<?php
 		if(isset($_GET['message'])){
-			if( $_GET['message'] = 'true'){
+			if( $_GET['message'] == 'true'){
 				?>
 					<div id="" class="updated notice notice-success is-dismissible"><p>Updated successfully.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>
 				<?php
 			}
-			else if( $_GET['message'] = 'false'){
+			else if( $_GET['message'] == 'false'){
 				?>
 					<div id="" class="updated notice notice-error is-dismissible"><p>Sorry. Didn't Updated. Please try again later.</p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>
 				<?php
@@ -88,6 +89,7 @@ function ald_login_page_options() {
 		}
 		?>
 	<br>
+	<?php $logo = ''; ?>
 	<form action="<?php echo admin_url( 'admin.php' ); ?>" method="post">
 		<table class="form-table">
 			<tbody>
@@ -165,7 +167,7 @@ function ald_login_logo() { ?>
         	<?php
         	if(get_option('ald_login_page_logo')){
         	?>
-            background-image: url(<?php echo get_option('ald_login_page_logo'); ?>);
+            background-image: url(<?php echo esc_url(get_option('ald_login_page_logo')); ?>);
             <?php
         	}
             ?>
@@ -176,11 +178,11 @@ function ald_login_logo() { ?>
         }
 
         body{
-        	background-color: <?php echo get_option('ald_login_page_bgcolor'); ?>!important;
+        	background-color: <?php echo esc_attr(get_option('ald_login_page_bgcolor')); ?>!important;
         }
 
         body.login div#login p#nav a, body.login div#login p#backtoblog a{
-        	color: <?php echo get_option('ald_login_page_fontcolor'); ?>!important;
+        	color: <?php echo esc_attr(get_option('ald_login_page_fontcolor')); ?>!important;
         }
     </style>
 <?php }
@@ -195,4 +197,3 @@ function ald_login_logo_url_title() {
     return get_bloginfo();
 }
 add_filter( 'login_headertitle', 'ald_login_logo_url_title' );
-

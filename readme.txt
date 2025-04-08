@@ -1,7 +1,8 @@
 === ALD Login Page ===
 Contributors: hossainawlad
-Plugin URI: https://www.technoviable.com/
-Tags: login, form, login form
+Plugin URI: https://github.com/hossainmdawlad/ald-login-page
+Author URI: https://www.technoviable.com
+Tags: change login page, login, form, login form
 Requires at least: 4.4.2
 Tested up to: 6.5
 Stable tag: 1.0
