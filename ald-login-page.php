@@ -1,40 +1,48 @@
 <?php
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
-/**
- * Plugin Name: ALD Login Page
- * Plugin URI: https://github.com/hossainmdawlad/ald-login-page
- * Description: ALD Login Page can manage login page flexibly with simple markup with the help of wordpress.
- * Version: 1.3
- * Author: Hossain Md. Awlad
- * Author URI: https://www.technoviable.com/
- *
- * Text Domain: ald-login-page
- * Domain Path: /languages/
- * License: GPLv2 or later
- * License URI: https://www.gnu.org/licenses/gpl-2.0.html
- */
+/*
+Plugin Name: ALD Login Page
+Plugin URI: https://github.com/hossainmdawlad/ald-login-page
+Description: ALD Login Page can manage login page flexibly with simple markup with the help of wordpress.
+Author: Hossain Md. Awlad
+Author URI: https://www.technoviable.com/
+Version: 1.3.1
+License: GPLv2
 
-// Version declaration
-if ( ! function_exists( 'get_plugin_data' ) ) {
-	require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-}
-$plugin_data = get_plugin_data( __FILE__ );
-$plugin_version = $plugin_data['Version'];
-define( 'ald_login_page_db_version', $plugin_version );
+{Plugin Name} is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+any later version.
+
+{Plugin Name} is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with {Plugin Name}. If not, see {License URI}.
+*/
+
+define( 'ald_login_page_db_version', '1.3.1' );
 
 // Backwards compatibility for older than PHP 5.3.0
 if ( !defined( '__DIR__' ) ) {
     define( '__DIR__', dirname( __FILE__ ) );
 }
 
-$ald_login_page_path = esc_url(admin_url('admin.php?page=ald-login-page', 'http' ));
+// Load plugin textdomain on after_setup_theme — WP 6.7+ (satisfies 'after_setup_theme or later')
+add_action( 'after_setup_theme', function() {
+    load_plugin_textdomain( 'ald-login-page', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+} );
 
-// initialize plugin
+$ald_login_page_path = esc_url(admin_url());
+
+
 function install_ald_login_page(){
 	global $ald_login_page_db_version;
 	add_option( 'ald_login_page_db_version', $ald_login_page_db_version );
 }
-if (isset($_GET['activate']) && $_GET['activate'] == 'true'){
+if ( isset( $_GET['activate'] ) && 'true' === sanitize_key( $_GET['activate'] ) ) {
 	add_action('init', 'install_ald_login_page');
 }
 add_action( 'admin_menu', 'ald_login_page_menu' );
@@ -282,4 +290,5 @@ add_filter( 'login_headerurl', 'ald_login_logo_url' );
 function ald_login_logo_url_title() {
     return get_bloginfo();
 }
-add_filter( 'login_headertitle', 'ald_login_logo_url_title' );
+add_filter( 'login_headertext', 'ald_login_logo_url_title' );
+
